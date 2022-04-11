@@ -22,17 +22,17 @@ export default function Dashboard() {
             <h5 class="text-xl font-medium leading-tight mb-2">John Doe</h5>
             <p class="text-gray-500">Web designer</p>
         </div>
-        <div className='mx-auto flex flex-col gap-1'>
-            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+        <div className='mx-auto flex flex-col gap-1 p-2'>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-xl hover:shadow-inner'>
             Profile
             </button>
-            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-xl hover:shadow-inner'>
             Open Shifts
             </button>
-            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-xl hover:shadow-inner'>
             My Shifts
             </button>
-            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-xl hover:shadow-inner'>
             Settings / Logout
             </button>
         </div>
