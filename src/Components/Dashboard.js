@@ -11,8 +11,8 @@ export default function Dashboard() {
 
   return (
 
-    <div className='mx-auto w-screen h-screen'> 
-      <div className='mx-auto lg:w-1/4 bg-gray-200 lg:h-screen float-left'>
+    <div className='mx-auto overflow-auto w-screen h-screen'> 
+      <div className='mx-auto max-h-full lg:w-1/4 bg-gray-200 lg:h-screen float-left'>
         <div class="text-center m-8">
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
@@ -22,19 +22,21 @@ export default function Dashboard() {
             <h5 class="text-xl font-medium leading-tight mb-2">John Doe</h5>
             <p class="text-gray-500">Web designer</p>
         </div>
+        <div className='mx-auto flex flex-col gap-1'>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            Profile
+            </button>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            Open Shifts
+            </button>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            My Shifts
+            </button>
+            <button className='w-full h-16 bg-gray-200 drop-shadow-lg shadow-lg hover:shadow-inner'>
+            Settings / Logout
+            </button>
+        </div>
 
-        <button className='w-full h-16 bg-red-200'>
-          Profile
-        </button>
-        <button className='w-full h-16 bg-red-200'>
-          Open Shifts
-        </button>
-        <button className='w-full h-16 bg-red-200'>
-          My Shifts
-        </button>
-        <button className='w-full h-16 bg-red-200'>
-          Settings
-        </button>
 
       </div>
 
