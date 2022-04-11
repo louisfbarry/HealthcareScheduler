@@ -1,5 +1,5 @@
 import Signup from "./Signup";
-import Dashboard from "./Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 import Login from "./Login";
 import { AuthProvider } from "../contexts/AuthContext";
 
@@ -19,7 +19,6 @@ function App() {
           <Route exact path="/" element={<Signup/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/login" element={<Login/>}/>
-          
         </Routes>
       </Router>
     </AuthProvider>
