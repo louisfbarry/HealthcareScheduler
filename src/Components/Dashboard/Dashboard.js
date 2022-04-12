@@ -44,10 +44,13 @@ export default function Dashboard({children}) {
 
   return (
 
-    <div className='mx-auto min-h-fit' id='screen'> 
+    <div className='flex' id='screen'> 
 
         <Navbar setNavState={setNavState}/>
-        <div id='content' />
+        <div class='w-full p-28 justify-items-center' id='content'>
+            
+        </div>
+        
 
     </div>
   )

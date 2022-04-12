@@ -27,7 +27,7 @@ export default function Navbar({setNavState}) {
 
   return (
 
-    <div className='mx-auto  lg:w-1/4 bg-gray-200 min-h-screen float-left' id='navbar'>
+    <div className=' lg:w-1/4 max-h-full bg-gray-200 min-h-screen' id='navbar'>
         <div class="text-center p-8">
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
