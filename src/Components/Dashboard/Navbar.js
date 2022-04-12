@@ -27,11 +27,11 @@ export default function Navbar({setNavState}) {
 
   return (
 
-    <div className=' lg:w-1/4 max-h-full bg-gray-100 min-h-screen' id='navbar'>
+    <div className=' lg:w-1/4 h-screen bg-gray-100 min-h-screen bg-gradient-to-r from-gray-200 to-blue-100' id='navbar'>
         <div class="text-center p-8">
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-              class="rounded-full w-48 mb-4 mx-auto"
+              class="rounded-full w-48 mb-4 mx-auto shadow-2xl"
               alt="Avatar"
             />
             <h5 class="text-xl font-medium leading-tight mb-2">John Doe</h5>
@@ -39,22 +39,24 @@ export default function Navbar({setNavState}) {
         </div>
 
         <div className='mx-auto flex flex-col divide-y-2 gap-1 p-2'>
-            <button className='font-semibold w-full h-16 bg-gray-100 drop-shadow-lg shadow-xl hover:shadow-inner'
+        <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
+            
+            
             onClick={handleOpenShifts}>
             Open Shifts
             </button>
-            <button className='font-semibold w-full h-16 bg-gray-100 drop-shadow-lg shadow-xl hover:shadow-inner'
+            <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
             onClick={handleMyShifts}>
             My Shifts
             </button>
-            <button className='font-semibold w-full h-16 bg-gray-100 drop-shadow-lg shadow-xl hover:shadow-inner'
+            <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
             onClick={handleProfile}>
             Profile
             </button>
-            <div className='w-full h-16 bg-gray-100 drop-shadow-lg shadow-xl 
+            <div className='w-full h-16 shadow-xl rounded-bl-full
             flex justify-center items-center gap-8'>
-            <FiSettings size={32} className='hover:animate-spin-slow hover:h-12'/>
-            <FiLogOut size={32} className='hover:animate-bounce-slow'/>
+            <FiSettings size={32} className='hover:animate-spin-slow hover:stroke-blue-600 active:scale-110'/>
+            <FiLogOut size={32} className='hover:stroke-blue-600 active:scale-110'/>
             </div>
         </div>
       </div>

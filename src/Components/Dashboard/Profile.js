@@ -2,6 +2,7 @@ import React from 'react'
 
 import {FiFile, FiUpload, FiTrash2} from 'react-icons/fi'
 import { FcApproval,FcHighPriority } from "react-icons/fc";
+import { FcAlarmClock,FcCheckmark } from "react-icons/fc";
 
 export default function Profile() {
 
@@ -12,7 +13,7 @@ export default function Profile() {
 
   return (
 
-    <div className='flex flex-col gap-4 p-4 h-full'>
+    <div className='bg-gradient-to-t from-gray-200 to-gray-300 flex flex-col gap-4 p-4 h-full rounded-3xl'>
 
       <div className='text-3xl p-4' id='profile-heading'>My Profile</div>
 
@@ -27,13 +28,11 @@ export default function Profile() {
         </div>
         
         <div className='flex grow gap-1 justify-end'>
-          <FiUpload className='hover:animate-bounce-slow' size={28}/>
+          <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
           <FiTrash2 size={28}/>
         </div>
       </div>
-
         
-      
       <div className='flex bg-gray-100 h-12 p-4 gap-4 shadow-lg rounded-xl items-center'>
         <FcHighPriority size={28}/> 
         <FiFile size={28}/>
@@ -42,7 +41,7 @@ export default function Profile() {
           <p>File name...</p>
         </div>
         <div className='flex grow gap-1 justify-end'>
-          <FiUpload className='hover:animate-bounce-slow' size={28}/>
+        <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
           <FiTrash2 size={28}/>
         </div>
         
@@ -57,17 +56,10 @@ export default function Profile() {
           <p>File name...</p>
         </div>
         <div className='flex grow gap-1 justify-end'>
-          <FiUpload className='hover:animate-bounce-slow' size={28}/>
+          <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
           <FiTrash2 size={28}/>
         </div>
       </div>
-
-
-
-
-
-
-
     </div>
 
   
