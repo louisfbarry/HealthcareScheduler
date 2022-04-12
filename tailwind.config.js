@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {animation: {
       'spin-slow': 'spin 5s linear infinite',
-      'bounce-slow': 'bounce 1.5s cubic-bezier(1, 1, 0.2, 1) infinite',
+      'bounce-slow': 'bounce 1.5s cubic-bezier(1, 0.2, 0.2, 1)',
 
     }},
   },
