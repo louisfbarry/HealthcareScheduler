@@ -11,12 +11,9 @@ export default function Navbar({setNavState}) {
     }
 
     const handleMyShifts = (e) => {
-
         e.preventDefault()
         setNavState(2)
-        console.log('content state changed to my shifts ')
-        
-
+        console.log('content state changed to my shifts')
     }
 
     const handleProfile = (e) => {
@@ -25,10 +22,40 @@ export default function Navbar({setNavState}) {
         console.log('content state changed to profile shifts')
     }
 
+    const Button = (handleFn, title) => {
+
+        return (
+            <button 
+            onClick={handleFn}
+            className='navbutton
+
+            hidden
+            md:inline-block
+            
+            
+            bg-gradient-to-l 
+            from-blue-300 
+            to-blue-200 
+            font-semibold 
+            w-full 
+            h-16 
+            active:scale-110'
+            > {title} </button>
+        )
+    }
+
   return (
 
-    <div className=' lg:w-1/4 h-screen bg-gray-100 min-h-screen bg-gradient-to-r from-gray-200 to-blue-100' id='navbar'>
-        <div class="text-center p-8">
+    <div className=' navbar
+
+    flex-0
+    flex-col
+
+
+
+    ' id='navbar'>
+
+        <div class="text-center flex items-end lg:flex-col p-8">
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
               class="rounded-full w-48 mb-4 mx-auto shadow-2xl"
@@ -38,26 +65,18 @@ export default function Navbar({setNavState}) {
             <p class="text-gray-500">Registered Nurse</p>
         </div>
 
-        <div className='mx-auto flex flex-col divide-y-2 gap-1 p-2'>
-        <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
-            
-            
-            onClick={handleOpenShifts}>
-            Open Shifts
-            </button>
-            <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
-            onClick={handleMyShifts}>
-            My Shifts
-            </button>
-            <button className='font-semibold w-full h-16 hover:shadow-inner active:scale-110'
-            onClick={handleProfile}>
-            Profile
-            </button>
-            <div className='w-full h-16 shadow-xl rounded-bl-full
+        <div className='buttonCanvas mx-auto flex flex-col gap-1'>
+
+            {Button(handleOpenShifts, "Open Shifts")}
+            {Button(handleMyShifts, "My Shifts")}
+            {Button(handleProfile, "Profile")}
+
+            <div className='bg-gradient-to-tl from-blue-300 to-blue-200 w-full h-16 shadow-xl rounded-bl-full
             flex justify-center items-center gap-8'>
-            <FiSettings size={32} className='hover:animate-spin-slow hover:stroke-blue-600 active:scale-110'/>
-            <FiLogOut size={32} className='hover:stroke-blue-600 active:scale-110'/>
+                <FiSettings size={32} className='hover:animate-spin-slow hover:stroke-blue-600 active:scale-110'/>
+                <FiLogOut size={32} className='hover:stroke-blue-600 active:scale-110'/>
             </div>
+
         </div>
       </div>
   )

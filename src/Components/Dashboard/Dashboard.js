@@ -28,29 +28,29 @@ export default function Dashboard({children}) {
 
     const openShifts = () => {
         
-        render(<OpenShifts />, document.getElementById('content'))   
+        render(<OpenShifts />, document.getElementById('dashboard-content'))   
     }
 
     const myShifts = () => {
         
-        render(<MyShifts />, document.getElementById('content'))
+        render(<MyShifts />, document.getElementById('dashboard-content'))
     }
 
     const profile = () => {
         
-        render(<Profile />, document.getElementById('content'))
+        render(<Profile />, document.getElementById('dashboard-content'))
     }
 
 
   return (
 
-    <div className='flex' id='screen'> 
+    <div className='dashboard
+    sm:flex 
+    max-h-screen 
+    max-w-screen' id='dashboard'> 
 
         <Navbar setNavState={setNavState}/>
-        <div class='w-full p-28 justify-items-center' id='content'>
-            
-        </div>
-        
+        <div class='w-full p-28 justify-items-center' id='dashboard-content'/>
 
     </div>
   )
