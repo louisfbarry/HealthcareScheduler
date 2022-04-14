@@ -1,8 +1,16 @@
 import React, {useRef, useState, useEffect} from 'react'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
 
+
 //Destructure Authorization Functionality
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { doc, setDoc, addDoc, onSnapshot, collection } from "firebase/firestore"
+import { db } from '../firebase';
+
+//v9 compats
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 import {auth} from '../firebase'
 
@@ -12,7 +20,12 @@ Signup() {
   //Email Input
   const emailRef = useRef()
   const [email, setEmail] = useState("")
-  const [emailFlag, setEmailFlag] = useState()
+  const [emailFlag, setEmailFlag] = useState(false)
+ 
+  //Name Input
+  const nameRef = useRef()
+  const [name, setName] = useState("")
+
 
   //Password Input
   const passwordRef = useRef()
@@ -24,7 +37,6 @@ Signup() {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [passwordMatchFlag, setPasswordMatchFlag] = useState(false)
     
-  //const auth = getAuth()
 
   const [user, setUser] = useState()
 
@@ -32,23 +44,32 @@ Signup() {
 
   useEffect(() => {
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user) {       
         
-        console.log(user.email)
+        
+        
+    // }});
 
-    }});
+  },[])
 
-  },[user])
+
+
 
   const handleSubmit = () => {
 
-    console.log('email is ' + email)
-
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
-      setUser(userCredentials.user.email)
-      
+
+      const user = userCredentials.user
+      setDoc(doc(db, "users", user.uid), {
+        
+        email: user.email,
+        firstName: name
+        
+        
+      });
+
     })
   }
 
@@ -61,6 +82,10 @@ Signup() {
         <h1 className='text-md'>Email</h1>
         <input type="email" placeholder='example@gmail.com' className='h-8 p-1 w-3/4 lg:w-1/2 shadow-sm' 
         value={email} onChange={(e) => setEmail(e.target.value)} ref={emailRef}></input>
+
+        <h1 className='text-md'>Name</h1>
+        <input type="text" placeholder='Name' className='h-8 p-1 w-3/4 lg:w-1/2 shadow-sm' 
+        value={name} onChange={(e) => setName(e.target.value)} ref={nameRef}></input>
         
         <h1 className='text-md'>Password</h1>
         {!passwordFlag && <p className='text-sm'>Password must be atleast 6 characters</p>}

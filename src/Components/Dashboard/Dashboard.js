@@ -5,6 +5,7 @@ import MyShifts from './MyShifts'
 import OpenShifts from './OpenShifts'
 import Profile from './Profile'
 
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import {auth} from '../../firebase'
@@ -31,8 +32,9 @@ export default function Dashboard({children}) {
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
+
+
               
-              console.log(user.email)
           }});
 
     },[navState, user])
