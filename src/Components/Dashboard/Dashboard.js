@@ -5,6 +5,10 @@ import MyShifts from './MyShifts'
 import OpenShifts from './OpenShifts'
 import Profile from './Profile'
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+import {auth} from '../../firebase'
+
 import 'tw-elements'
 
 import { render } from 'react-dom'
@@ -14,6 +18,7 @@ export default function Dashboard({children}) {
     const [navState, setNavState] = useState(1)
     const [state, setState] = useState()
 
+    const [user, setUser] = useState()
 
     useEffect(() => {
 
@@ -24,7 +29,13 @@ export default function Dashboard({children}) {
             default: console.log('default case')
         }
 
-    },[navState])
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+              
+              console.log(user.email)
+          }});
+
+    },[navState, user])
 
     const openShifts = () => {
         
@@ -48,7 +59,6 @@ export default function Dashboard({children}) {
     sm:flex 
     max-h-screen 
     max-w-screen' id='dashboard'> 
-
         <Navbar setNavState={setNavState}/>
         <div class='w-full p-28 justify-items-center' id='dashboard-content'/>
 

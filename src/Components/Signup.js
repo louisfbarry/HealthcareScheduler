@@ -1,17 +1,10 @@
-// import React from 'react'
-
-// export default function Signup() {
-//   return (
-//     <div className='w-8 h-8 bg-red-200'>Signup</div>
-//   )
-// }
-
 import React, {useRef, useState, useEffect} from 'react'
 import {Link, Navigate, useNavigate} from 'react-router-dom'
 
-import { useAuth } from '../contexts/AuthContext'
+//Destructure Authorization Functionality
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 
-import { auth } from '../firebase'
+import {auth} from '../firebase'
 
 export default function 
 Signup() {
@@ -30,54 +23,41 @@ Signup() {
   const passwordConfirmRef = useRef()
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [passwordMatchFlag, setPasswordMatchFlag] = useState(false)
-  
-  //Destructure Authorization Functionality
-  const { currentUser, signup } = useAuth()
+    
+  //const auth = getAuth()
+
+  const [user, setUser] = useState()
 
   const navigate = useNavigate()
-  
+
   useEffect(() => {
 
-   verify()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        console.log(user.email)
 
-  },[password, passwordConfirm])
+    }});
 
-  //Verify fields are passing
-  const verify = () => {
+  },[user])
 
-    //set default flag values
-    setPasswordFlag(false)
-    setPasswordMatchFlag(false)
+  const handleSubmit = () => {
 
-    //Verify length
-    if(passwordRef.current.value.length >= 6) {
-      setPasswordFlag(true)
-    }
-    //Verify match
-    if(passwordRef.current.value === passwordConfirmRef.current.value) {
-      setPasswordMatchFlag(true)
-    }
+    console.log('email is ' + email)
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredentials) => {
+      setUser(userCredentials.user.email)
+      
+    })
   }
-
-const handleSubmit = () => {
-
-  //if values pass
-  if(passwordFlag === true && passwordMatchFlag === true){
-    
-    signup(auth, email,password)
-      .then(console.log('successfuly signed up'))
-      .then(console.log(currentUser))
-      .then(navigate('/dashboard'))
-    
-  }
-}
 
   return (
 
     <div className="container mx-auto flex flex-col items-center p-4 bg-gray-200 gap-y-4">
 
       <h1 className='text-2xl'>Signup</h1>
-
+        {user}
         <h1 className='text-md'>Email</h1>
         <input type="email" placeholder='example@gmail.com' className='h-8 p-1 w-3/4 lg:w-1/2 shadow-sm' 
         value={email} onChange={(e) => setEmail(e.target.value)} ref={emailRef}></input>
