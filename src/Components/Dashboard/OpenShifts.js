@@ -7,6 +7,7 @@ import {RiAlertFill} from 'react-icons/ri'
 
 export default function OpenShifts() {
   return (
+    
     <div className='bg-gray-100 flex flex-col gap-4 p-4 h-full ring-4 rounded-3xl'>
 
     <div className='flex justify-between place-items-center'>

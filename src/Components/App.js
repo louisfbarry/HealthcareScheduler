@@ -1,7 +1,6 @@
 import Signup from "./Signup";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "./Login";
-import { AuthProvider } from "../contexts/AuthContext";
 
 import {
   BrowserRouter as Router,
@@ -13,7 +12,7 @@ import {
 
 function App() {
   return (
-    <AuthProvider>
+    
       <Router>
         <Routes>
           <Route exact path="/" element={<Signup/>}/>
@@ -21,7 +20,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
         </Routes>
       </Router>
-    </AuthProvider>
+    
   );
 }
 

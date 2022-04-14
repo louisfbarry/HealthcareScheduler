@@ -48,10 +48,10 @@ export default function Navbar({setNavState}) {
     
     ' id='navbar'>
 
-        <div class="items-center justify-between pl-2 pt-2 gap-6 flex lg:flex-col">
+        <div className="items-center justify-between pl-2 pt-2 gap-6 flex lg:flex-col">
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-              class="profile-image
+              className="profile-image
               
               
               rounded-full 
@@ -62,8 +62,8 @@ export default function Navbar({setNavState}) {
               shadow-2xl"
               alt="Avatar"
             />
-            <h5 class="text-2xl font-medium leading-tight mb-2">John Doe</h5>
-            <p class="text-gray-500 truncate hidden sm:contents">Registered Nurse</p>
+            <h5 className="text-2xl font-medium leading-tight mb-2">John Doe</h5>
+            <p className="text-gray-500 truncate hidden sm:contents">Registered Nurse</p>
             <div className='flex '>   
                 <GiHamburgerMenu className='hamburger-menu 
                     sm:hidden

@@ -60,7 +60,7 @@ export default function Dashboard({children}) {
     max-h-screen 
     max-w-screen' id='dashboard'> 
         <Navbar setNavState={setNavState}/>
-        <div class='w-full p-28 justify-items-center' id='dashboard-content'/>
+        <div className='w-full p-28 justify-items-center' id='dashboard-content'/>
 
     </div>
   )
