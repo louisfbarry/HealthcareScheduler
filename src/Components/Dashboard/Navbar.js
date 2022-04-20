@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 import { FiSettings, FiLogOut } from "react-icons/fi"
 import { GiHamburgerMenu } from "react-icons/gi";
 
-export default function Navbar({setNavState, firstName, lastName, role}) {
+export default function Navbar({setNavState, user}) {
 
+console.log('user firstname is from navbar')
+
+    
+    const [currentUser, setCurrentUser] = useState({
+        firstName: "John",
+        lastName: "Doe",
+        role: "Registered Nurse"
+    })
+
+    useEffect(() => {
+
+        if(user){            
+            const {firstName, lastName, role} = user
+            setCurrentUser(user)
+        }
+    },[user])
+   
 
     const handleOpenShifts = (e) => {
         e.preventDefault()
@@ -46,9 +63,7 @@ export default function Navbar({setNavState, firstName, lastName, role}) {
 
   return (
 
-    <div className=' navbar
-    
-    
+    <div className=' navbar  
     
     ' id='navbar'>
 
@@ -56,8 +71,6 @@ export default function Navbar({setNavState, firstName, lastName, role}) {
             <img
               src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
               className="profile-image
-              
-              
               rounded-full 
               self-center 
               mb-4 
@@ -66,8 +79,10 @@ export default function Navbar({setNavState, firstName, lastName, role}) {
               shadow-2xl"
               alt="Avatar"
             />
-            <h5 className="text-2xl font-medium leading-tight mb-2">{firstName + " " +  lastName}</h5>
-            <p className="text-gray-500 truncate hidden sm:contents">{role}</p>
+            <h5 className="text-2xl font-medium leading-tight mb-2">
+                {currentUser.firstName + " " + currentUser.lastName}
+            </h5>
+            <p className="text-gray-500 truncate hidden sm:contents">{currentUser.role}</p>
             <div className='flex '>   
                 <GiHamburgerMenu className='hamburger-menu 
                     sm:hidden
@@ -98,7 +113,6 @@ export default function Navbar({setNavState, firstName, lastName, role}) {
                 <FiSettings size={32} className='hover:animate-spin-slow hover:stroke-blue-600 active:scale-110'/>
                 <FiLogOut size={32} className='hover:stroke-blue-600 active:scale-110'/>
             </div>
-
         </div>
       </div>
   )

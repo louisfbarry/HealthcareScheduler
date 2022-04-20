@@ -3,13 +3,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 import CardCredentials from './CardCredentials';
 
 
-import Card from '../Card';
+import Card from '../../Card';
 
 export default function Profile({user}) {
 
-
-    //useEffect 
-    // check database, if file is uploaded, return true
 
 
   return (

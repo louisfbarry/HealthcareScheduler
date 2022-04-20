@@ -3,15 +3,13 @@ import React, {useEffect, useState} from 'react'
 import {CgArrowRightO} from 'react-icons/cg'
 import {FaTools} from 'react-icons/fa'
 import {BsClipboardCheck} from 'react-icons/bs'
+import {SiFirebase, SiReact} from 'react-icons/si'
 import Card from './Card'
 import Signup from './Signup'
 
 import { useNavigate } from 'react-router-dom'
 
 export default function LandingPage({children}) {
-
-
-    const navigate = useNavigate()
 
     return (
       <>
@@ -43,7 +41,9 @@ export default function LandingPage({children}) {
             w-screen
         '>
 
-            firebase and react react logo. the capabilities of this app
+            <SiFirebase size={90} color={'#F5820D'}/>
+            
+            <SiReact size={90} color={'#61dbfb'}/>
 
         </div>
     </>

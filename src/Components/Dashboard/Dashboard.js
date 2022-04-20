@@ -3,8 +3,8 @@ import React, {useState, useEffect} from 'react'
 import Navbar from './Navbar'
 import MyShifts from './MyShifts'
 import OpenShifts from './OpenShifts'
-import Profile from './Profile'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Profile from './Profile/Profile'
+import { onAuthStateChanged } from "firebase/auth";
 
 import { doc, getDoc } from 'firebase/firestore'
 
@@ -18,28 +18,22 @@ export default function Dashboard({children}) {
     
     const [navState, setNavState] = useState(1)
     const [user, setUser] = useState()
-    const [firstName, setFirstName] = useState()
-    
-    const [lastName, setLastName] = useState()
-    
-    const [role, setRole] = useState()
-
 
     // populate with generic uid ?
 
-    const read = async (col, uid) => {
+    const populateUser = async (col, uid) => {
 
         const docRef = doc(db, col, uid)
         const docSnap = await getDoc(docRef)
         const data = docSnap.exists() ? docSnap.data() : console.log('no docSnap data')
 
-        console.log(data)
-        setFirstName(data.firstName)
-        setLastName(data.lastName)
-        setRole(data.role)
+        setUser({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            role: data.role
+        })
 
     }
- 
 
     useEffect(() => {
 
@@ -54,22 +48,11 @@ export default function Dashboard({children}) {
         //retrieve uid
         //populate credentials with user info
         onAuthStateChanged(auth, (userCredentials) => {
+
             if (userCredentials) {
                 //find user uid
                 const uid = userCredentials.uid
-               
-                const user = read('users', uid)
-
-             
-                
-
-                
-                
-                //parse user data
-            
-               // docSnap ? console.log('docsnap is : ' + docSnap.data()) : console.log('docSnap empty')
-
-                
+                populateUser('users', uid)         
           }});
 
     },[navState, auth])
@@ -96,9 +79,8 @@ export default function Dashboard({children}) {
         sm:flex 
         max-h-screen 
         max-w-screen' id='dashboard'> 
-        <Navbar setNavState={setNavState} firstName={firstName} lastName={lastName} role={role}/>
+        <Navbar setNavState={setNavState} user={user}/>
         <div className='w-full p-28 justify-items-center' id='dashboard-content'/>
-
     </div>
   )
 }
