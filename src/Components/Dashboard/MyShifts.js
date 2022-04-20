@@ -4,8 +4,16 @@ import {FiFile, FiUpload, FiTrash2} from 'react-icons/fi'
 import { FcApproval,FcHighPriority } from "react-icons/fc";
 import { FcAlarmClock,FcCheckmark } from "react-icons/fc";
 
+import { auth } from '../../firebase';
+
 
 export default function MyShifts() {
+
+
+
+
+
+
   return (
     <div className='bg-gradient-to-t from-gray-200 to-gray-300 flex flex-col gap-4 p-4 h-full rounded-3xl'>
 
@@ -25,7 +33,7 @@ export default function MyShifts() {
       </div>
 
       
-      <div className='flex h-12 p-4 gap-4 bg-gray-100 items-center rounded-xl shadow-lg rounded'>
+      <div className='flex h-12 p-4 gap-4 bg-gray-100 items-center rounded-xl shadow-lg'>
         <FcAlarmClock size={28}/> 
         <FiFile size={28}/>
 

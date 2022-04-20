@@ -14,12 +14,10 @@ import 'tw-elements'
 
 import { render } from 'react-dom'
 
-export default function Dashboard({children}) {
+export default function Dashboard({}) {
     
     const [navState, setNavState] = useState(1)
     const [user, setUser] = useState()
-
-    // populate with generic uid ?
 
     const populateUser = async (col, uid) => {
 
