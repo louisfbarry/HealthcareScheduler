@@ -3,7 +3,8 @@ import React from 'react'
 import { FiSettings, FiLogOut } from "react-icons/fi"
 import { GiHamburgerMenu } from "react-icons/gi";
 
-export default function Navbar({setNavState}) {
+export default function Navbar({setNavState, firstName, lastName, role}) {
+
 
     const handleOpenShifts = (e) => {
         e.preventDefault()
@@ -28,14 +29,17 @@ export default function Navbar({setNavState}) {
         return (
             <button 
             onClick={handleFn}
-            className='navbutton          
-            bg-gradient-to-l 
-            from-blue-300 
-            to-blue-200 
-            font-semibold 
-            
-            h-16 
-            active:scale-110'
+            className='navbutton
+            subpixel-antialiased          
+            bg-gradient-to-tr
+            from-blue-600 
+            to-blue-300
+            font-bold 
+            active:bg-gradient-bl
+            active:from-blue-300
+            active:to-blue-600       
+            active:scale-95
+            h-16'
             > {title} </button>
         )
     }
@@ -62,19 +66,16 @@ export default function Navbar({setNavState}) {
               shadow-2xl"
               alt="Avatar"
             />
-            <h5 className="text-2xl font-medium leading-tight mb-2">John Doe</h5>
-            <p className="text-gray-500 truncate hidden sm:contents">Registered Nurse</p>
+            <h5 className="text-2xl font-medium leading-tight mb-2">{firstName + " " +  lastName}</h5>
+            <p className="text-gray-500 truncate hidden sm:contents">{role}</p>
             <div className='flex '>   
                 <GiHamburgerMenu className='hamburger-menu 
                     sm:hidden
-                    
                     w-12
                     h-12
                     border-black
                     rounded-lg
                     active:border-4
-                    
-                    
                     '/>
             </div>
         </div>
@@ -89,9 +90,9 @@ export default function Navbar({setNavState}) {
             {Button(handleProfile, "Profile")}
 
             <div className='
-            bg-gradient-to-tl 
-            from-blue-300 
-            to-blue-200 
+            bg-gradient-to-tr 
+             from-blue-600 
+             to-blue-300 
             w-full h-16 shadow-xl rounded-bl-full
             flex justify-center items-center gap-8'>
                 <FiSettings size={32} className='hover:animate-spin-slow hover:stroke-blue-600 active:scale-110'/>

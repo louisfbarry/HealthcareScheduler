@@ -1,6 +1,7 @@
 import Signup from "./Signup";
 import Dashboard from "./Dashboard/Dashboard";
 import Login from "./Login";
+import LandingPage from "./LandingPage";
 
 import {
   BrowserRouter as Router,
@@ -15,9 +16,10 @@ function App() {
     
       <Router>
         <Routes>
-          <Route exact path="/" element={<Signup/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/login" element={<Login/>}/>
+          <Route exact path="/" element={<LandingPage/>}/>
+          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/Dashboard" element={<Dashboard/>}/>
+          <Route path="/Login" element={<Login/>}/>
         </Routes>
       </Router>
     

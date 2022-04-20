@@ -31,7 +31,7 @@ export default function MyShifts() {
 
         <div className='flex grow justify-between'>
           <h1 className='text-xl'>Healthcare License Upload</h1>
-          <p>File name...</p>
+          
         </div>
         
         <div className='flex grow gap-1 justify-end'>
@@ -45,7 +45,7 @@ export default function MyShifts() {
         <FiFile size={28}/>
         <div className='flex grow justify-between'>
           <h1 className='text-xl'>CPR Certification Upload</h1>
-          <p>File name...</p>
+          
         </div>
         <div className='flex grow gap-1 justify-end'>
           <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>

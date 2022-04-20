@@ -1,15 +1,16 @@
-import React from 'react'
-
-import {FiFile, FiUpload, FiTrash2} from 'react-icons/fi'
-import { FcApproval,FcHighPriority } from "react-icons/fc";
-import { FcAlarmClock,FcCheckmark } from "react-icons/fc";
-
-export default function Profile() {
+import React, {useEffect} from 'react'
+import { onAuthStateChanged } from 'firebase/auth';
+import CardCredentials from './CardCredentials';
 
 
-  //min-h-screen max-h-screen w-full
+import Card from '../Card';
 
-  //flex flex-col bg-red-200 h-full p-2
+export default function Profile({user}) {
+
+
+    //useEffect 
+    // check database, if file is uploaded, return true
+
 
   return (
 
@@ -17,49 +18,12 @@ export default function Profile() {
 
       <div className='text-3xl p-4' id='profile-heading'>My Profile</div>
 
-      
-      <div className='flex h-12 p-4 gap-4 bg-gray-100 items-center rounded-xl shadow-lg rounded'>
-        <FcApproval size={28}/> 
-        <FiFile size={28}/>
+      <CardCredentials title={'Healthcare License Certificate'} file={true}/>
+      <CardCredentials title={'CPR Certification Photo'} file={false}/>
+      <CardCredentials title={'Vaccine Card Upload'}  file={false}/>
 
-        <div className='flex grow justify-between'>
-          <h1 className='text-xl'>Healthcare License Upload</h1>
-          <p>File name...</p>
-        </div>
-        
-        <div className='flex grow gap-1 justify-end'>
-          <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
-          <FiTrash2 size={28}/>
-        </div>
-      </div>
-        
-      <div className='flex bg-gray-100 h-12 p-4 gap-4 shadow-lg rounded-xl items-center'>
-        <FcHighPriority size={28}/> 
-        <FiFile size={28}/>
-        <div className='flex grow justify-between'>
-          <h1 className='text-xl'>CPR Certification Upload</h1>
-          <p>File name...</p>
-        </div>
-        <div className='flex grow gap-1 justify-end'>
-        <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
-          <FiTrash2 size={28}/>
-        </div>
-        
-      </div>
-      
 
-      <div className='flex bg-gray-100 h-12 p-4 gap-4 shadow-lg rounded-xl items-center'>
-        <FcHighPriority size={28}/> 
-        <FiFile size={28}/>
-        <div className='flex grow justify-between'>
-          <h1 className='text-xl'>Vaccine Card Upload</h1>
-          <p>File name...</p>
-        </div>
-        <div className='flex grow gap-1 justify-end'>
-          <FiUpload className='hover:stroke-blue-600 active:scale-110' size={28}/>
-          <FiTrash2 size={28}/>
-        </div>
-      </div>
+
     </div>
 
   
