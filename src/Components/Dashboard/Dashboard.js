@@ -15,10 +15,15 @@ import 'tw-elements'
 import { render } from 'react-dom'
 
 export default function Dashboard({}) {
+
+    const PROFILE = Symbol('PROFILE')
+    const MY_SHIFTS = Symbol('MY_SHIFTS')
+    const OPEN_SHIFTS = Symbol('OPEN_SHIFTS')
     
-    const [navState, setNavState] = useState(1)
+    const [navState, setNavState] = useState(PROFILE)
     const [user, setUser] = useState()
 
+    //Function that populates fields with current user specific data
     const populateUser = async (col, uid) => {
 
         const docRef = doc(db, col, uid)
@@ -30,16 +35,21 @@ export default function Dashboard({}) {
             lastName: data.lastName,
             role: data.role
         })
-
     }
 
     useEffect(() => {
 
         //render dashboard type
         switch(navState){
-            case 1: openShifts(); break;
-            case 2: myShifts(); break;
-            case 3: profile(); break;
+            case "OPEN_SHIFTS": {   
+                render(<OpenShifts user={user}/>, document.getElementById('dashboard-content'))
+            }; break;
+            case "MY_SHIFTS": {
+                render(<MyShifts user={user}/>, document.getElementById('dashboard-content'))
+            }; break;
+            case "PROFILE": {
+                render(<Profile user={user}/>, document.getElementById('dashboard-content'))
+            }; break;
             default: console.log('default case')
         }
 
@@ -54,21 +64,6 @@ export default function Dashboard({}) {
           }});
 
     },[navState, auth])
-
-    const openShifts = () => {
-        
-        render(<OpenShifts user={user}/>, document.getElementById('dashboard-content'))   
-    }
-
-    const myShifts = () => {
-        
-        render(<MyShifts user={user}/>, document.getElementById('dashboard-content'))
-    }
-
-    const profile = () => {
-        
-        render(<Profile user={user}/>, document.getElementById('dashboard-content'))
-    }
 
 
   return (

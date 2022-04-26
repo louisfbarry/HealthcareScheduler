@@ -21,23 +21,22 @@ console.log('user firstname is from navbar')
             setCurrentUser(user)
         }
     },[user])
-   
 
     const handleOpenShifts = (e) => {
         e.preventDefault()
-        setNavState(1)
+        setNavState("OPEN_SHIFTS")
         console.log('content state changed to open shifts from navbar')
     }
 
     const handleMyShifts = (e) => {
         e.preventDefault()
-        setNavState(2)
+        setNavState('MY_SHIFTS')
         console.log('content state changed to my shifts')
     }
 
     const handleProfile = (e) => {
         e.preventDefault()
-        setNavState(3)
+        setNavState('PROFILE')
         console.log('content state changed to profile shifts')
     }
 

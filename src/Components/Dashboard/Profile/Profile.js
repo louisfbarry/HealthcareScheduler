@@ -15,6 +15,7 @@ export default function Profile({user}) {
 
       <div className='text-3xl p-4' id='profile-heading'>My Profile</div>
 
+      
       <CardCredentials title={'Healthcare License Certificate'} file={true}/>
       <CardCredentials title={'CPR Certification Photo'} file={false}/>
       <CardCredentials title={'Vaccine Card Upload'}  file={false}/>

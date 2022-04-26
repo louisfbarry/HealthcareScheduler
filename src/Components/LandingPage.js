@@ -4,7 +4,6 @@ import {CgArrowRightO} from 'react-icons/cg'
 import {FaTools} from 'react-icons/fa'
 import {BsClipboardCheck} from 'react-icons/bs'
 import {SiFirebase, SiReact, SiLinkedin, SiGithub} from 'react-icons/si'
-
 import Card from './Card'
 import Signup from './Signup'
 
