@@ -21,7 +21,7 @@ export default function OpenShifts() {
     </div>
 
     
-    <button className='flex h-12 p-4 gap-4 bg-gray-100 items-center justify-start rounded-xl shadow-lg rounded hover:bg-red-100'>
+    <button className='flex h-12 p-4 gap-4 bg-gray-100 items-center justify-start rounded-xl shadow-lg hover:bg-red-100'>
     
     <div className='flex'>      
         <RiAlertFill className='animate-ping absolute bg-sky-100 opacity-50' color={'#eed202'} size={28}/>
