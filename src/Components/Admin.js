@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import { doc, setDoc, getDocs, collection } from "firebase/firestore"; 
 import { db } from '../firebase';
 
+import 'tw-elements'
+
 const Admin = () => {
 
     //
@@ -21,15 +23,10 @@ const Admin = () => {
         //find all docs(facilities) in shifts collection
         const querySnapshot = await getDocs(collection(db, "shifts"));
         querySnapshot.forEach((doc) => {
-            setFacility([...facility, doc.id])
-            console.log('added : ' + doc.id)
-
+            tempArray.push(doc.id)
         });
 
-
-        
-        
-      
+        setFacility(tempArray)
         
     }
 
@@ -42,6 +39,8 @@ const Admin = () => {
         });
     }
 
+    
+
 
     return (
         <div className='page
@@ -49,8 +48,10 @@ const Admin = () => {
         h-screen
         bg-red-300
         flex
+        flex-col
         justify-center
-        items-center'>
+        items-center
+        gap-2'>
 
         <input className='shiftsearch
         w-1/2
@@ -58,7 +59,19 @@ const Admin = () => {
         rounded-lg
         p-2' placeholder='Search  open shifts'></input>
 
-        {}
+        <select>
+        {facility.map((facility) => {
+        return (
+            <option className='selectFacility
+                shadow-lg
+                rounded
+                bg-blue-300'
+                value={facility}>{facility}</option>
+        )
+        })}
+        </select>
+
+
 
             
         </div>
