@@ -12,20 +12,22 @@ import { click } from '@testing-library/user-event/dist/click';
 const Admin = () => {
 
     //Facility (from firestore list)
-    const [facility, setFacility] = useState([])
+    const [facility, setFacility] = useState(["loading..."])
+    const [currentFacility, setCurrentFacility] = useState("")
+
     //date (MM/DD/YYYY)
-    const [startDate, setStartDate] = useState(new Date())
+    const [date, setDate] = useState(new Date())
     //shift hour
     const [shift, setShift] = useState()
 
 
-    //
     useEffect(() => {
 
         getFacilities()
-        console.log('date is : ' + `${startDate.getMonth() + 1}/${startDate.getDate()}/${startDate.getFullYear()}/`)
 
-    }, [startDate, shift])
+        //console.log('date is : ' + `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}/`)
+
+    }, [date, shift])
 
     const tempArray = []
     
@@ -37,21 +39,23 @@ const Admin = () => {
             tempArray.push(doc.id)
         });
 
-        setFacility(tempArray)
-        
+        setFacility(tempArray)   
     }
 
     const createShift = async () => {
+
         // Add a new document in collection "cities"
-        await setDoc(doc(db, "shifts", "admin"), {
-            name: "Los Angeles",
-            state: "CA",
-            country: "USA"
-        });
+        await setDoc(doc(db, "shifts", currentFacility), {
+            facility: currentFacility,
+            date: date,
+            shift: shift
+        })
+        console.log('shift created')
     }
 
-    const clickFn = () => {
-        setShift(1)
+    const clickFn = async () => {
+        setCurrentFacility()
+        await console.log('current facility is: ' + currentFacility)
     }
 
 
@@ -74,14 +78,20 @@ const Admin = () => {
             px-4
             py-1
             text-center
-            rounded-xl'>
-            {facility.map((facility) => {
+            rounded-xl'
+            value={facility}
+            
+            >
+            {facility.map((currentFacility) => {
+
             return (
                 <option className='selectFacility
                     shadow-lg
                     rounded
                     bg-blue-300'
-                    value={facility}>{facility}</option>
+                    value={currentFacility}
+                    
+                    >{currentFacility}</option>
             )
             })}
         </select>
@@ -89,12 +99,12 @@ const Admin = () => {
         
 
         <div className="date-picker-wrapper">
-        <DatePicker className='date-picker
-            w-1/8 
-            text-center
-            rounded-xl' 
-            selected={startDate} 
-            onChange={(date) => setStartDate(date)} />
+            <DatePicker className='date-picker
+                w-1/8 
+                text-center
+                rounded-xl' 
+                selected={date} 
+                onChange={(date) => setDate(date)} />
         </div>
 
         <div className='shiftSelect
@@ -102,38 +112,37 @@ const Admin = () => {
             bg-blue-100
             rounded-lg
             gap-4'>
-
                 
-        <button className={`shiftBtn
-                ${shift == 1 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
-                hover:bg-blue-500
-                active:bg-blue-100
-                drop-shadow-lg
-                shadow-lg
-                rounded-lg
-                px-4`}
-                id='1st'
-                onClick={() => setShift(1)}>1st</button>    
-        <button className={`shiftBtn
-                ${shift == 2 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
-                hover:bg-blue-500
-                active:bg-blue-100
-                drop-shadow-lg
-                shadow-lg
-                rounded-lg
-                px-4`}
-                id='1st'
-                onClick={() => setShift(2)}>2nd</button>  
-        <button className={`shiftBtn
-                ${shift == 3 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
-                hover:bg-blue-500
-                active:bg-blue-100
-                drop-shadow-lg
-                shadow-lg
-                rounded-lg
-                px-4`}
-                id='1st'
-                onClick={() => setShift(3)}>3rd</button>   
+            <button className={`shiftBtn
+                    ${shift === 1 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
+                    hover:bg-blue-500
+                    active:bg-blue-100
+                    drop-shadow-lg
+                    shadow-lg
+                    rounded-lg
+                    px-4`}
+                    id='1st'
+                    onClick={() => setShift(1)}>1st</button>    
+            <button className={`shiftBtn
+                    ${shift === 2 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
+                    hover:bg-blue-500
+                    active:gradient-to-t active:from-blue-100 active:to-blue-400
+                    drop-shadow-lg
+                    shadow-lg
+                    rounded-lg
+                    px-4`}
+                    id='1st'
+                    onClick={() => setShift(2)}>2nd</button>  
+            <button className={`shiftBtn
+                    ${shift === 3 ? 'ring-2 ring-red-500' : 'bg-blue-400'}
+                    hover:bg-blue-500
+                    active:bg-blue-100
+                    drop-shadow-lg
+                    shadow-lg
+                    rounded-lg
+                    px-4`}
+                    id='1st'
+                    onClick={() => setShift(3)}>3rd</button>   
 
         </div>
 
@@ -149,16 +158,11 @@ const Admin = () => {
             drop-shadow-lg
             shadow-lg
             tracking-wider
-            font-bold'>Create Shift</button>
-
-
-
-
-
-        
+            font-bold'
+            onClick={() => clickFn()}>Create Shift</button>
             
         </div>
-    );
+    )
 }
 
 export default Admin;
