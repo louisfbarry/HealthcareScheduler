@@ -4,9 +4,6 @@ import { FiSettings, FiLogOut } from "react-icons/fi"
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Navbar({setNavState, user}) {
-
-console.log('user firstname is from navbar')
-
     
     const [currentUser, setCurrentUser] = useState({
         firstName: "John",

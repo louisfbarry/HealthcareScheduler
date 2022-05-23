@@ -13,7 +13,7 @@ const Admin = () => {
 
     //Facility (from firestore list)
     const [facility, setFacility] = useState(["loading..."])
-    const [currentFacility, setCurrentFacility] = useState("")
+    const [currentFacility, setCurrentFacility] = useState()
 
     //date (MM/DD/YYYY)
     const [date, setDate] = useState(new Date())
@@ -24,10 +24,12 @@ const Admin = () => {
     useEffect(() => {
 
         getFacilities()
+        console.log("current facility is " + currentFacility)
+        
 
         //console.log('date is : ' + `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}/`)
 
-    }, [date, shift])
+    }, [date, shift, currentFacility])
 
     const tempArray = []
     
@@ -44,6 +46,8 @@ const Admin = () => {
 
     const createShift = async () => {
 
+        console.log('you just clicked create shift!')
+
         // Add a new document in collection "cities"
         await setDoc(doc(db, "shifts", currentFacility), {
             facility: currentFacility,
@@ -51,12 +55,10 @@ const Admin = () => {
             shift: shift
         })
         console.log('shift created')
+    
     }
 
-    const clickFn = async () => {
-        setCurrentFacility()
-        await console.log('current facility is: ' + currentFacility)
-    }
+
 
 
 
@@ -78,21 +80,18 @@ const Admin = () => {
             px-4
             py-1
             text-center
-            rounded-xl'
-            value={facility}
-            
-            >
+            rounded-xl'            
+            onChange={(e) => setCurrentFacility(e.target.value)}>
             {facility.map((currentFacility) => {
 
-            return (
-                <option className='selectFacility
-                    shadow-lg
-                    rounded
-                    bg-blue-300'
-                    value={currentFacility}
-                    
+                return (
+                    <option className='selectFacility
+                        shadow-lg
+                        rounded
+                        bg-blue-300'
+                        value={currentFacility}
                     >{currentFacility}</option>
-            )
+                )
             })}
         </select>
 
@@ -159,7 +158,7 @@ const Admin = () => {
             shadow-lg
             tracking-wider
             font-bold'
-            onClick={() => clickFn()}>Create Shift</button>
+            onClick={() => createShift()}>Create Shift</button>
             
         </div>
     )

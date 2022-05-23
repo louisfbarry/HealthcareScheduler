@@ -6,13 +6,14 @@ import OpenShifts from './OpenShifts'
 import Profile from './Profile/Profile'
 import { onAuthStateChanged } from "firebase/auth";
 
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, getDocs, collection } from 'firebase/firestore'
 
 import {auth, db} from '../../firebase'
 
 import 'tw-elements'
 
 import { render } from 'react-dom'
+import { data } from 'autoprefixer'
 
 export default function Dashboard({}) {
 
@@ -20,8 +21,10 @@ export default function Dashboard({}) {
     const MY_SHIFTS = Symbol('MY_SHIFTS')
     const OPEN_SHIFTS = Symbol('OPEN_SHIFTS')
     
-    const [navState, setNavState] = useState(PROFILE)
+    const [navState, setNavState] = useState("OPEN_SHIFTS")
     const [user, setUser] = useState()
+    const [shifts, setShifts] = useState()
+    const [openShifts, setOpenShifts] = useState()
 
     //Function that populates fields with current user specific data
     const populateUser = async (col, uid) => {
@@ -35,6 +38,28 @@ export default function Dashboard({}) {
             lastName: data.lastName,
             role: data.role
         })
+    }
+
+    const populateShifts = async () => {
+        
+        const querySnapshot = await getDocs(collection(db, "shifts"))
+        
+        querySnapshot.forEach((doc) => {
+
+
+            setOpenShifts(...data, {
+                facilityName: doc.id,
+                
+            })
+
+          
+                
+        })
+
+        console.log("open shifts is " + openShifts)
+        
+        
+        
     }
 
     useEffect(() => {
@@ -60,7 +85,8 @@ export default function Dashboard({}) {
             if (userCredentials) {
                 //find user uid
                 const uid = userCredentials.uid
-                populateUser('users', uid)         
+                populateUser('users', uid)
+                populateShifts('shifts')         
           }});
 
     },[navState, auth])
