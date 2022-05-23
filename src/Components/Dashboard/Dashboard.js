@@ -40,27 +40,6 @@ export default function Dashboard({}) {
         })
     }
 
-    const populateShifts = async () => {
-        
-        const querySnapshot = await getDocs(collection(db, "shifts"))
-        
-        querySnapshot.forEach((doc) => {
-
-
-            setOpenShifts(...data, {
-                facilityName: doc.id,
-                
-            })
-
-          
-                
-        })
-
-        console.log("open shifts is " + openShifts)
-        
-        
-        
-    }
 
     useEffect(() => {
 
@@ -86,7 +65,7 @@ export default function Dashboard({}) {
                 //find user uid
                 const uid = userCredentials.uid
                 populateUser('users', uid)
-                populateShifts('shifts')         
+                       
           }});
 
     },[navState, auth])
