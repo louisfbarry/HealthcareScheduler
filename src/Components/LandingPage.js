@@ -15,8 +15,10 @@ export default function LandingPage({children}) {
       <>
         <div className='landingpage
             
+            
             w-screen
             sm:max-h-96
+            pt-4
             lg:h-screen
             flex
             flex-col

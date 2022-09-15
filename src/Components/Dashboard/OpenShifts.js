@@ -12,11 +12,9 @@ import {AiOutlineDash} from 'react-icons/ai'
 import {RiAlertFill} from 'react-icons/ri'
 import { data } from 'autoprefixer';
 
-
-
 export default function OpenShifts() {
 
-  const [shifts, setShifts] = useState()
+  const [shifts, setShifts] = useState([])
 
   const tempArray = []
 
@@ -25,17 +23,16 @@ export default function OpenShifts() {
     const querySnapshot = await getDocs(collection(db, "shifts"))
     querySnapshot.forEach((doc) => {
         //facility
-      tempArray.push({
-        facility: doc.id,
-        shift: doc.data().shift
-      })
+        console.log('docId is ' + doc.id)
+        console.log(doc.data().shift)
     })        
 
-    console.log('shifts is : ' + JSON.stringify(tempArray))
+    
   }
 
   useEffect(() => {
     populateShifts()
+    console.log('shifts is : ' + JSON.stringify(shifts))
   },[])
 
 

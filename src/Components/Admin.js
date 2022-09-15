@@ -25,6 +25,7 @@ const Admin = () => {
 
         getFacilities()
         console.log("current facility is " + currentFacility)
+        console.log('shift is ' + shift)
         
 
         //console.log('date is : ' + `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}/`)
@@ -47,6 +48,7 @@ const Admin = () => {
     const createShift = async () => {
 
         console.log('you just clicked create shift!')
+        console.log('current facility is ' + currentFacility)
 
         // Add a new document in collection "cities"
         await setDoc(doc(db, "shifts", currentFacility), {
